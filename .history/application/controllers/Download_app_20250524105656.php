@@ -35,8 +35,7 @@ public function laporan_xls_cek(){
     $data['tgl1']=$from=str_replace("/", "-", $tgl[0]);  
     $data['tgl2']=$to=str_replace("/", "-", $tgl[1]);   
 	$data['rekap'] = $this->M_database->query_cek_all_date($from,$to);	
-	$this->load->view('admin/admin/download_report_xls_cek', $data);
-    //test github 			
+	$this->load->view('admin/admin/download_report_xls_cek', $data); 			
     }	
 }
     
