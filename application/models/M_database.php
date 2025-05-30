@@ -311,6 +311,11 @@ $sql = "select * from $table where ID='$id'";
 return $this->db->query($sql)->result_array();
 }
 
+public function query_getdataid($id,$table){
+$sql = "select * from $table where ID='$id'";
+return $this->db->query($sql)->row_array();
+}
+
 public function query_item_id($id,$session){
 $sql = "select * from request_item where ID_BARANG='$id' AND SESSION_ID='$session'";
 return $this->db->query($sql)->result_array();
@@ -334,6 +339,67 @@ return $this->db->query($sql)->result_array();
 public function terjual(){
 $sql = "select SUM(m.JUMLAH) as JUMLAH,SUM(m.MARGIN) as UNTUNG FROM transaksi_item m JOIN transaksi_barang k ON k.NO_TRANSAKSI=m.NO_TRANSAKSI WHERE k.JENIS='KELUAR'";
 return $this->db->query($sql)->result_array();
+}
+
+public function saran_users(){
+    $sql = "SELECT 
+    b.NAMA,
+    a.* 
+    FROM `complaints` a
+    LEFT JOIN `user` b ON a.user_id = b.ID
+    WHERE a.status = 'Terkirim'";
+    return $this->db->query($sql)->result_array();
+}
+
+public function saran_users_byid($id){
+    $sql = "SELECT 
+    b.NAMA,
+    a.* 
+    FROM `complaints` a
+    LEFT JOIN `user` b ON a.user_id = b.ID
+    WHERE a.status = 'Terkirim' AND a.id = '$id'";
+    return $this->db->query($sql)->row_array();
+}
+
+public function saran_responses(){
+    $sql = "SELECT
+    c.NAMA, 
+    b.title,
+    b.description,
+    b.status as status_complaint,
+    a.* 
+    FROM `complaint_responses` a
+    LEFT JOIN `complaints` b ON a.complaint_id = b.ID
+    LEFT JOIN `user` c ON b.user_id = c.ID";
+    return $this->db->query($sql)->result_array();
+}
+
+public function saran_responses_byid($id){
+    $sql = "SELECT
+    c.NAMA, 
+    b.title,
+    b.description,
+    b.status as status_complaint,
+    a.* 
+    FROM `complaint_responses` a
+    LEFT JOIN `complaints` b ON a.complaint_id = b.ID
+    LEFT JOIN `user` c ON b.user_id = c.ID
+    WHERE a.id = '$id'";
+    return $this->db->query($sql)->row_array();
+}
+
+public function saran_responses_bycomplaintid($id){
+    $sql = "SELECT
+    c.NAMA, 
+    b.title,
+    b.description,
+    b.status as status_complaint,
+    a.* 
+    FROM `complaint_responses` a
+    LEFT JOIN `complaints` b ON a.complaint_id = b.ID
+    LEFT JOIN `user` c ON b.user_id = c.ID
+    WHERE a.complaint_id = '$id'";
+    return $this->db->query($sql)->result_array();
 }
 
 public function terjualm($awal,$akhir){

@@ -57,7 +57,16 @@ $route['logout'] = 'auth_login/logout';
 $route['dashboard'] = 'Manage_app/dashboard';
 $route['reqitem'] = 'Manage_app/request_barang';
 $route['listreq'] = 'Manage_app/daftar_request';
-
+$route['Manage_app/saran'] = 'SaranController/index';
+$route['Manage_app/saran/tambah'] = 'SaranController/create';
+$route['Manage_app/saran/store'] = 'SaranController/store';
+$route['Manage_app/saran/edit/(:any)'] = 'SaranController/edit/$1';
+$route['Manage_app/saran/update/(:any)'] = 'SaranController/update/$1';
+$route['Manage_app/saran/delete/(:any)'] = 'SaranController/delete/$1';
+$route['Manage_app/saran-respon'] = 'SaranResponController/index';
+$route['Manage_app/saran-respon/proses/(:any)'] = 'SaranResponController/proses/$1';
+$route['Manage_app/saran-respon/selesai/(:any)'] = 'SaranResponController/selesai/$1';
+$route['Manage_app/saran-respon/status/(:any)'] = 'SaranResponController/status/$1';
 
 //modal update data
 $route['changepassed/(:any)'] = 'Manage_app/update/$1';
