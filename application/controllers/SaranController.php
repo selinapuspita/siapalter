@@ -14,7 +14,7 @@ class SaranController extends CI_Controller{
     public function index(){
         $complaints = $this->M_database->query_table('complaints');
         $data = [
-            'page' => 'admin/saran',
+            'page' => 'admin/saran/saran',
             'complaints' => $complaints
         ];
         $this->load->view('template_admin',$data);
@@ -22,7 +22,7 @@ class SaranController extends CI_Controller{
 
     public function create(){
         $data = [
-            'page' => 'admin/saran-tambah',
+            'page' => 'admin/saran/saran-tambah',
         ];
         $this->load->view('template_admin',$data);
     }
@@ -49,7 +49,7 @@ class SaranController extends CI_Controller{
 	    $complaint = $this->M_database->query_getdataid($id,'complaints'); 	
 
         $data = [
-            'page' => 'admin/saran-edit',
+            'page' => 'admin/saran/saran-edit',
             'complaint' => $complaint,
         ];
         $this->load->view('template_admin',$data);

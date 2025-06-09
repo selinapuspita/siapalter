@@ -15,7 +15,7 @@ class SaranResponController extends CI_Controller{
         $saran_users = $this->M_database->saran_users();
         $saran_responses = $this->M_database->saran_responses();
         $data = [
-            'page' => 'admin/saran-respon',
+            'page' => 'admin/saran/saran-respon',
             'saran_users' => $saran_users,
             'saran_responses' => $saran_responses
         ];
@@ -69,7 +69,7 @@ class SaranResponController extends CI_Controller{
     public function status($id){
         $saran_responses = $this->M_database->saran_responses_bycomplaintid($id);
         $data = [
-            'page' => 'admin/saran-respon-status',
+            'page' => 'admin/saran/saran-respon-status',
             'saran_responses' => $saran_responses
         ];
         $this->load->view('template_admin',$data);
